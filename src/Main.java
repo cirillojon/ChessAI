@@ -25,8 +25,8 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
 
-        //Print the sum of the prime numbers up to 100
-        System.out.println(sumPrimeNumbers(100));
+        //Print the sum of the prime numbers up to 50
+        System.out.println(sumPrimeNumbers(50));
 
     }
 }
