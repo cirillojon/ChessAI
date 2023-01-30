@@ -16,4 +16,6 @@ public abstract class Piece {
 
     public abstract List<Move> calculateLegalMoves(final Board board);
 
+
+
 }
