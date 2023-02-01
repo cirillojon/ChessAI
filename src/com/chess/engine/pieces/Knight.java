@@ -66,6 +66,8 @@ public class Knight extends Piece {
         return Collections.unmodifiableList(legalMoves);
     }
 
+
+    //EDGE CASES
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
         // Check if the current position is in the first column
         // and if the candidate offset is one of the following values
