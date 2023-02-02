@@ -5,6 +5,7 @@ import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.Move;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class Pawn extends Piece{
@@ -80,6 +81,6 @@ public class Pawn extends Piece{
             }
         }
         // return the list of legal moves
-        return legalMoves;
+        return Collections.unmodifiableList(legalMoves);
     }
 }
