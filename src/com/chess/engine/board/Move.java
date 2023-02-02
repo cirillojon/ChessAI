@@ -30,7 +30,6 @@ public abstract class Move {
             super(board, movedPiece, destinationCoordinate);
         }
     }
-
     // AttackMove class that extends the Move class
     public static final class AttackMove extends Move {
 
@@ -45,6 +44,8 @@ public abstract class Move {
             super(board, movedPiece, destinationCoordinate);
             this.attackedPiece = attackedPiece;
         }
+
+
     }
 
 }

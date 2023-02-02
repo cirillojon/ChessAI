@@ -4,7 +4,6 @@ import com.chess.engine.board.Board;
 import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.Move;
 import com.chess.engine.board.Tile;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
