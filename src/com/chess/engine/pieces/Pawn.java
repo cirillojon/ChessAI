@@ -15,7 +15,7 @@ public class Pawn extends Piece{
     }
 
     // constant array of the possible move vectors for the pawn
-    private final static int[] CANDIDATE_MOVE_VECTOR_COORDINATES = {8,16};
+    private final static int[] CANDIDATE_MOVE_VECTOR_COORDINATES = {8,16,7,9};
 
     @Override
     public Collection<Move> calculateLegalMoves(final Board board) {
@@ -49,31 +49,23 @@ public class Pawn extends Piece{
                         !board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
                     // add the move to the list of legal moves
                     legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
-                } else if (currentCandidateOffset == 7 && (BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.pieceAlliance.isWhite()  )){
+                } else if (currentCandidateOffset == 7 &&
+                              !((BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.pieceAlliance.isWhite() ||
+                                (BoardUtils.FIRST_COLUMN[this.piecePosition] && this.pieceAlliance.isBlack() )))){
                     if(board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
                         final Piece pieceAtDestination = board.getTile(candidateDestinationCoordinate).getPiece();
                         if(this.pieceAlliance != pieceAtDestination.getPieceAlliance()) {
+                            //Todo more work to do here (deal with promotions)!!!
                             legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
                         }
                     }
-                } else if (currentCandidateOffset == 9 && (BoardUtils.FIRST_COLUMN[this.piecePosition] && this.pieceAlliance.isWhite() )) {
+                }else if (currentCandidateOffset == 9 &&
+                            !((BoardUtils.FIRST_COLUMN[this.piecePosition] && this.pieceAlliance.isWhite() ||
+                              (BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.pieceAlliance.isBlack() )))) {
                     if(board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
                         final Piece pieceAtDestination = board.getTile(candidateDestinationCoordinate).getPiece();
                         if(this.pieceAlliance != pieceAtDestination.getPieceAlliance()) {
-                            legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
-                        }
-                    }
-                } else if (currentCandidateOffset == 7 && (BoardUtils.FIRST_COLUMN[this.piecePosition] && this.pieceAlliance.isBlack() )) {
-                    if(board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
-                        final Piece pieceAtDestination = board.getTile(candidateDestinationCoordinate).getPiece();
-                        if(this.pieceAlliance != pieceAtDestination.getPieceAlliance()) {
-                            legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
-                        }
-                    }
-                } else if (currentCandidateOffset == 9 && (BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.pieceAlliance.isBlack() )) {
-                    if(board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
-                        final Piece pieceAtDestination = board.getTile(candidateDestinationCoordinate).getPiece();
-                        if(this.pieceAlliance != pieceAtDestination.getPieceAlliance()) {
+                            //Todo more work to do here (deal with promotions)!!!
                             legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
                         }
                     }
