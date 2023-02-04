@@ -1,3 +1,4 @@
+
 package com.chess.engine.pieces;
 import com.chess.engine.Alliance;
 import com.chess.engine.board.Board;
@@ -50,21 +51,29 @@ public class Pawn extends Piece{
                     // add the move to the list of legal moves
                     legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
                 } else if (currentCandidateOffset == 7 &&
-                              !((BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.pieceAlliance.isWhite() ||
+                        !((BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.pieceAlliance.isWhite() ||
                                 (BoardUtils.FIRST_COLUMN[this.piecePosition] && this.pieceAlliance.isBlack() )))){
+                    // Check if the destination tile is occupied
                     if(board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
+                        // If occupied, get the piece at the destination
                         final Piece pieceAtDestination = board.getTile(candidateDestinationCoordinate).getPiece();
+                        // Check if the piece at the destination is of opposite alliance
                         if(this.pieceAlliance != pieceAtDestination.getPieceAlliance()) {
+                            // If opposite alliance, add a MajorMove move to the legalMoves list
                             //Todo more work to do here (deal with promotions)!!!
                             legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
                         }
                     }
                 }else if (currentCandidateOffset == 9 &&
-                            !((BoardUtils.FIRST_COLUMN[this.piecePosition] && this.pieceAlliance.isWhite() ||
-                              (BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.pieceAlliance.isBlack() )))) {
+                        !((BoardUtils.FIRST_COLUMN[this.piecePosition] && this.pieceAlliance.isWhite() ||
+                                (BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.pieceAlliance.isBlack() )))) {
+                    // Check if the destination tile is occupied
                     if(board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
+                        // If occupied, get the piece at the destination
                         final Piece pieceAtDestination = board.getTile(candidateDestinationCoordinate).getPiece();
+                        // Check if the piece at the destination is of opposite alliance
                         if(this.pieceAlliance != pieceAtDestination.getPieceAlliance()) {
+                            // If opposite alliance, add a MajorMove move to the legalMoves list
                             //Todo more work to do here (deal with promotions)!!!
                             legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
                         }

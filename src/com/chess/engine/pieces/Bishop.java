@@ -76,7 +76,6 @@ public class Bishop extends Piece{
     }
 
     //EDGE CASES
-
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset)
     {
         return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == -9 || candidateOffset == 7);
