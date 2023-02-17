@@ -17,7 +17,7 @@ public class King extends Piece{
 
     // Constructor to initialize King object
     public King(int piecePosition, Alliance pieceAlliance) {
-        super(piecePosition, pieceAlliance);
+        super(PieceType.KING, piecePosition, pieceAlliance);
     }
 
     // Overridden method to calculate legal moves for the King piece

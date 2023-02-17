@@ -12,7 +12,7 @@ import java.util.List;
 public class Pawn extends Piece{
     // constructor that calls the super class constructor with the given piece position and alliance
     public Pawn(final int piecePosition, final Alliance pieceAlliance) {
-        super(piecePosition, pieceAlliance);
+        super(PieceType.PAWN, piecePosition, pieceAlliance);
     }
 
     // constant array of the possible move vectors for the pawn

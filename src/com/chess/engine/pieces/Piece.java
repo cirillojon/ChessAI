@@ -3,20 +3,23 @@ import com.chess.engine.board.Board;
 import com.chess.engine.board.Move;
 import com.chess.engine.Alliance;
 import java.util.Collection;
-import java.util.List;
 
 public abstract class Piece {
 
+    protected final PieceType pieceType;
     protected final int piecePosition;
     protected final Alliance pieceAlliance;
 
     protected final boolean isFirstMove;
 
-    Piece(final int piecePosition, final Alliance pieceAlliance) {
-        this.piecePosition = piecePosition;
-        this.pieceAlliance = pieceAlliance;
-        // TODO more work here
-        this.isFirstMove = false;
+    Piece(final PieceType pieceType,
+          final int piecePosition,
+          final Alliance pieceAlliance) {
+            this.pieceType = pieceType;
+            this.piecePosition = piecePosition;
+            this.pieceAlliance = pieceAlliance;
+            // TODO more work here
+            this.isFirstMove = false;
     }
 
     public abstract Collection<Move> calculateLegalMoves(final Board board);
@@ -28,6 +31,8 @@ public abstract class Piece {
     public boolean isFirstMove() {
         return this.isFirstMove;
     }
+
+    public PieceType getPieceType() { return this.pieceType; }
 
     public int getPiecePosition() {
         return this.piecePosition;
@@ -92,7 +97,7 @@ public abstract class Piece {
         KING("K") {
             @Override
             public boolean isKing() {
-                return false;
+                return true;
             }
 
             @Override

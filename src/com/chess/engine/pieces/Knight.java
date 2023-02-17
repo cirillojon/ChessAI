@@ -17,7 +17,7 @@ public class Knight extends Piece {
 
     // Constructor to create a new knight piece
     public Knight(final int piecePosition, final Alliance pieceAlliance) {
-        super(piecePosition, pieceAlliance);
+        super(PieceType.KNIGHT, piecePosition, pieceAlliance);
     }
 
     // Method to calculate legal moves for the knight piece
