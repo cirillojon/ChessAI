@@ -24,7 +24,7 @@ public abstract class Tile
     }
 
     //Return either an EmptyTile or an OccupiedTile, depending on whether there's a piece on the tile
-    private static Tile createTile(final int tileCoordinate, final Piece piece)
+    static Tile createTile(final int tileCoordinate, final Piece piece)
     {
         if(piece != null)
             return new EmptyTile.OccupiedTile(tileCoordinate, piece);
@@ -45,6 +45,11 @@ public abstract class Tile
             super(coordinate);
         }
 
+        @Override
+        public String toString() {
+            return "-";
+        }
+
         //An empty tile is not occupied
         @Override
         public boolean isTileOccupied() {
@@ -57,6 +62,8 @@ public abstract class Tile
             return null;
         }
 
+
+
         //The OccupiedTile class represents a tile occupied by a piece
         public static final class OccupiedTile extends Tile
         {
@@ -67,6 +74,12 @@ public abstract class Tile
             {
                 super(coordinate);
                 this.pieceOnTile = pieceOnTile;
+            }
+
+            @Override
+            public String toString() {
+                return getPiece().getPieceAlliance().isBlack() ? getPiece().toString().toLowerCase() :
+                        getPiece().toString();
             }
 
             //An occupied tile is occupied

@@ -13,7 +13,7 @@ public class Rook extends Piece{
 
     private final static int[] CANDIDATE_MOVE_VECTOR_COORDINATES = {-8, -1, 1, 8};
 
-    Rook(int piecePosition, Alliance pieceAlliance) {
+    public Rook(int piecePosition, Alliance pieceAlliance) {
         super(piecePosition, pieceAlliance);
     }
 
@@ -77,6 +77,12 @@ public class Rook extends Piece{
 
         // return the list of legal moves as an unmodifiable collection
         return Collections.unmodifiableList(legalMoves);
+    }
+
+    @Override
+    public String toString()
+    {
+        return PieceType.ROOK.toString();
     }
 
     // check if the current position is in the first column and the candidate offset would move the piece off the board

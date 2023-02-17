@@ -16,7 +16,7 @@ public class Knight extends Piece {
     private final static int[] CANDIDATE_MOVE_COORDINATES = {-17, -15, -10, -6, 6, 10, 15, 17};
 
     // Constructor to create a new knight piece
-    Knight(final int piecePosition, final Alliance pieceAlliance) {
+    public Knight(final int piecePosition, final Alliance pieceAlliance) {
         super(piecePosition, pieceAlliance);
     }
 
@@ -64,6 +64,12 @@ public class Knight extends Piece {
         }
         // Return the unmodifiable list of legal moves
         return Collections.unmodifiableList(legalMoves);
+    }
+
+    @Override
+    public String toString()
+    {
+        return PieceType.KNIGHT.toString();
     }
 
 

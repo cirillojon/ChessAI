@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Pawn extends Piece{
     // constructor that calls the super class constructor with the given piece position and alliance
-    Pawn(final int piecePosition, final Alliance pieceAlliance) {
+    public Pawn(final int piecePosition, final Alliance pieceAlliance) {
         super(piecePosition, pieceAlliance);
     }
 
@@ -83,5 +83,11 @@ public class Pawn extends Piece{
         }
         // return the list of legal moves
         return Collections.unmodifiableList(legalMoves);
+    }
+
+    @Override
+    public String toString()
+    {
+        return PieceType.PAWN.toString();
     }
 }

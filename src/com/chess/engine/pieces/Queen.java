@@ -12,7 +12,7 @@ import java.util.List;
 public class Queen extends Piece {
 
     private final static int[] CANDIDATE_MOVE_VECTOR_COORDINATES = {-9, -8, -7, -1, 1, 7, 8, 9};
-    Queen(final int piecePosition, final Alliance pieceAlliance) {
+    public Queen(final int piecePosition, final Alliance pieceAlliance) {
         super(piecePosition, pieceAlliance);
     }
 
@@ -73,6 +73,12 @@ public class Queen extends Piece {
 
         // return the list of legal moves as an unmodifiable collection
         return Collections.unmodifiableList(legalMoves);
+    }
+
+    @Override
+    public String toString()
+    {
+        return PieceType.QUEEN.toString();
     }
 
     //EDGE CASES

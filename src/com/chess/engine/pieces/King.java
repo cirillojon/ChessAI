@@ -66,6 +66,13 @@ public class King extends Piece{
         // return the list of legal moves
         return Collections.unmodifiableList(legalMoves);
     }
+
+    @Override
+    public String toString()
+    {
+        return PieceType.KING.toString();
+    }
+
     // helper method to check if the King is on the first column
     public static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset){
         // returns true if the King is on the first column and the candidate offset is one of -9, -1, or 7

@@ -12,7 +12,7 @@ import java.util.List;
 public class Bishop extends Piece{
 
     private final static int[] CANDIDATE_MOVE_VECTOR_COORDINATES = {-9, -7, 7, 9};
-    Bishop(int piecePosition, Alliance pieceAlliance) {
+    public Bishop(int piecePosition, Alliance pieceAlliance) {
         super(piecePosition, pieceAlliance);
     }
 
@@ -73,6 +73,12 @@ public class Bishop extends Piece{
 
         // return the list of legal moves as an unmodifiable collection
         return Collections.unmodifiableList(legalMoves);
+    }
+
+    @Override
+    public String toString()
+    {
+        return PieceType.BISHOP.toString();
     }
 
     //EDGE CASES
