@@ -17,6 +17,7 @@ public class Board {
 
     private final WhitePlayer whitePlayer;
     private final BlackPlayer blackPlayer;
+    private final Player currentPlayer;
 
     // Private constructor that creates a new board using the builder pattern.
     private Board(Builder builder){
@@ -29,6 +30,7 @@ public class Board {
         final Collection<Move> blackStandardLegalMoves = calculateLegalMoves(this.blackPieces);
         this.whitePlayer = new WhitePlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
         this.blackPlayer = new BlackPlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
+        this.currentPlayer = null;
     }
 
     @Override
@@ -54,6 +56,10 @@ public class Board {
     }
     public Collection<Piece> getWhitePieces() {
         return this.whitePieces;
+    }
+
+    public Player currentPlayer() {
+        return this.currentPlayer;
     }
 
     // Calculates all legal moves for a given collection of pieces.
