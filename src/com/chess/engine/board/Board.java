@@ -20,7 +20,7 @@ public class Board {
     private final Player currentPlayer;
 
     // Private constructor that creates a new board using the builder pattern.
-    private Board(Builder builder){
+    private Board(final Builder builder){
         // The game board is created from the board configuration.
         this.gameBoard = createGameBoard(builder);
         // Calculates the white and black pieces on the board.
@@ -30,7 +30,7 @@ public class Board {
         final Collection<Move> blackStandardLegalMoves = calculateLegalMoves(this.blackPieces);
         this.whitePlayer = new WhitePlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
         this.blackPlayer = new BlackPlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
-        this.currentPlayer = null;
+        this.currentPlayer = builder.nextMoveMaker.choosePlayer(this.whitePlayer, this.blackPlayer);
     }
 
     @Override

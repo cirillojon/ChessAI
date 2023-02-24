@@ -74,6 +74,10 @@ public class Bishop extends Piece{
         // return the list of legal moves as an unmodifiable collection
         return Collections.unmodifiableList(legalMoves);
     }
+    @Override
+    public Bishop movePiece(final Move move) {
+        return new Bishop(move.getDestinationCoordinate(),move.getMovedPiece().getPieceAlliance());
+    }
 
     @Override
     public String toString()
