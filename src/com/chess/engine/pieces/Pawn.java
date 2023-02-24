@@ -90,7 +90,6 @@ public class Pawn extends Piece{
         return new Pawn(move.getDestinationCoordinate(),move.getMovedPiece().getPieceAlliance());
     }
 
-
     @Override
     public String toString()
     {
