@@ -20,6 +20,10 @@ public abstract class Move {
         this.destinationCoordinate = destinationCoordinate;
     }
 
+    public int getDestinationCoordinate() {
+        return this.destinationCoordinate;
+    }
+
     // MajorMove class that extends the Move class
     public static final class MajorMove extends Move {
 
