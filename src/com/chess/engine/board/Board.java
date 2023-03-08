@@ -71,7 +71,9 @@ public class Board {
             legalMoves.addAll(piece.calculateLegalMoves(this));
         }
         // Return an unmodifiable list of the legal moves.
-        return Collections.unmodifiableList(legalMoves);
+
+        //Changed to modifiable list to allow for castling for testing (should change later)
+        return legalMoves;
     }
 
     // Calculates all active pieces for a given alliance.

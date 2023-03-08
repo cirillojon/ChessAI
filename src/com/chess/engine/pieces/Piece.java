@@ -108,7 +108,7 @@ public abstract class Piece {
 
             @Override
             public boolean isRook() {
-                return false;
+                return true;
             }
         },
         QUEEN("Q") {

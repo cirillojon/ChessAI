@@ -26,8 +26,10 @@ public abstract class Player {
         // Initializes instance variables.
         this.board = board;
         this.playerKing = establishKing();
-        this.legalMoves = legalMoves;
+        legalMoves.addAll(calculateKingCastles(legalMoves, opponentMoves));
+        this.legalMoves = Collections.unmodifiableCollection(legalMoves);
         this.isInCheck = !Player.calculateAttacksOnTile(this.playerKing.getPiecePosition(), opponentMoves).isEmpty();
+
     }
 
     // Getter method for the player's king.
@@ -41,7 +43,7 @@ public abstract class Player {
     }
 
     // Calculates the moves that attack a certain tile.
-    private static Collection<Move> calculateAttacksOnTile(int piecePosition, Collection<Move> moves) {
+    protected static Collection<Move> calculateAttacksOnTile(int piecePosition, Collection<Move> moves) {
         final List<Move> attackMoves = new ArrayList<>();
         for(final Move move: moves){
             if(piecePosition == move.getDestinationCoordinate()){
@@ -128,6 +130,7 @@ public abstract class Player {
     public abstract Collection<Piece> getActivePieces();
     public abstract Alliance getAlliance();
     public abstract Player getOpponent();
+    protected abstract Collection<Move> calculateKingCastles(Collection<Move> playerLegals, Collection<Move> opponentLegals);
 
 
 }
