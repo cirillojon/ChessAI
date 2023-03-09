@@ -1,4 +1,6 @@
-#Milestone
+# Milestone
+
+
 
 Initially, our goal was to create a multi-threaded chess AI. We found great resources online to help create a Java-based chess implementation with an AI. We planned to start by developing the chess game while researching parallel implementations, and then multithread the AI once the engine was built out.
 
