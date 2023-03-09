@@ -8,7 +8,7 @@ We realized that this would be a large undertaking, and in the case that the che
 
 Alpha-Beta-Pruning is a commonly used algorithm in chess engines, and we decided to make it the focus of our paper. However, if time permits, we still hope to implement our parallel alpha-beta algorithm into the chess engine.
 
-Initially, we made significant progress building the chess engine from scratch. But for the purpose of the project and due to time constraints, instead of focusing our efforts on building out the game itself, we found finished code that we can use as our base and then attempt to modify its existing AI code to the parallelized alpha-beta implementation that we developed.
+Initially, we made significant progress building the chess engine from scratch. But for the purpose of the project and due to time constraints, instead of focusing our efforts on finishing building out the game itself, we found finished code that we can use as our base and then attempt to modify its existing AI code to the parallelized alpha-beta implementation that we developed.
 
 One of the major roadblocks we are currently encountering is that an efficient sequential implementation has proven to outperform the parallel one despite our best efforts using a variety of multi-threading techniques.
 
