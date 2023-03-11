@@ -20,7 +20,6 @@ public class ParallelAlphaBeta {
 
     public static ThreadLocal<HashMap<Node, Integer>> cache = ThreadLocal.withInitial(HashMap::new);
 
-
     //Random variable used to generate a given seed for testing purposes
     public static Random RANDOM = new Random(408);
 
@@ -252,52 +251,52 @@ public class ParallelAlphaBeta {
             // Return the best node for the current node
             return bestNode;
         }
-
-        // Method to print results of the algorithm
-        public static void printResults(Node root, Node result, int depth, long timeTaken) {
-            System.out.println("Parallel Alpha-Beta Algorithm Results:");
-            System.out.println("=======================================");
-            System.out.println("Depth: " + depth);
-            System.out.println("Number of Threads: " + MAX_THREADS);
-            System.out.println("Time Taken: " + timeTaken + "ms");
-            System.out.println("Result:");
-            System.out.println("-------");
-            System.out.println("Max Value: " + result.value);
-        }
-
-        // Driver Method
-        public static void main(String[] args) {
-            int depth = 3;
-
-            // Creates tree for a given depth
-            Node root = createLargeTree(depth);
-
-            //STARTS TIME AFTER TREE HAS BEEN CREATED
-            long startTime = System.currentTimeMillis();
-
-            // Prints out the tree
-            root.print("", true);
-
-            int alpha = Integer.MIN_VALUE;
-            int beta = Integer.MAX_VALUE;
-
-            // Create a new AlphaBetaTask with the root node, maximum depth, alpha and beta values, and set to the maximizing player
-            AlphaBetaTask rootTask = new AlphaBetaTask(root, depth, alpha, beta, true);
-
-            // Create a new ForkJoinPool with the maximum number of threads available on the system
-            ForkJoinPool pool = new ForkJoinPool(MAX_THREADS);
-
-            // Invoke the root task using the ForkJoinPool and get the result
-            Node result = pool.invoke(rootTask);
-
-            // Shut down the ForkJoinPool after the task is complete
-            pool.shutdown();
-
-            long endTime = System.currentTimeMillis();
-            long timeTaken = endTime - startTime;
-
-            // Print the results
-            printResults(root, result, depth, timeTaken);
-        }
     }
+
+            // Method to print results of the algorithm
+            public static void printResults(Node root, Node result, int depth, long timeTaken) {
+                System.out.println("Parallel Alpha-Beta Algorithm Results:");
+                System.out.println("=======================================");
+                System.out.println("Depth: " + depth);
+                System.out.println("Number of Threads: " + MAX_THREADS);
+                System.out.println("Time Taken: " + timeTaken + "ms");
+                System.out.println("Result:");
+                System.out.println("-------");
+                System.out.println("Max Value: " + result.value);
+            }
+            
+            // Driver Method
+            public static void main(String[] args) {
+                int depth = 3;
+    
+                // Creates tree for a given depth
+                Node root = createLargeTree(depth);
+    
+                //STARTS TIME AFTER TREE HAS BEEN CREATED
+                long startTime = System.currentTimeMillis();
+    
+                // Prints out the tree
+                root.print("", true);
+    
+                int alpha = Integer.MIN_VALUE;
+                int beta = Integer.MAX_VALUE;
+    
+                // Create a new AlphaBetaTask with the root node, maximum depth, alpha and beta values, and set to the maximizing player
+                AlphaBetaTask rootTask = new AlphaBetaTask(root, depth, alpha, beta, true);
+    
+                // Create a new ForkJoinPool with the maximum number of threads available on the system
+                ForkJoinPool pool = new ForkJoinPool(MAX_THREADS);
+    
+                // Invoke the root task using the ForkJoinPool and get the result
+                Node result = pool.invoke(rootTask);
+    
+                // Shut down the ForkJoinPool after the task is complete
+                pool.shutdown();
+    
+                long endTime = System.currentTimeMillis();
+                long timeTaken = endTime - startTime;
+    
+                // Print the results
+                printResults(root, result, depth, timeTaken);
+            }
 }
