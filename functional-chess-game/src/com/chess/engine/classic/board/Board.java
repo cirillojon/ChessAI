@@ -6,6 +6,7 @@ import com.chess.engine.classic.pieces.*;
 import com.chess.engine.classic.player.BlackPlayer;
 import com.chess.engine.classic.player.Player;
 import com.chess.engine.classic.player.WhitePlayer;
+import com.chess.engine.*;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -13,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.Random;
 
 public final class Board {
 
@@ -24,8 +26,47 @@ public final class Board {
     private final Player currentPlayer;
     private final Pawn enPassantPawn;
     private final Move transitionMove;
-
     private static final Board STANDARD_BOARD = createStandardBoardImpl();
+
+
+    /* Added variables / methods for ZobristHashing for Transpoistion table in parallel alpha-beta algorithm */
+    private static final long[][][] ZOBRIST_TABLE = generateZobristTable();
+
+    private static long[][][] generateZobristTable() {
+        long[][][] zobristTable = new long[64][12][2];
+        Random random = new Random();
+        
+        for (int position = 0; position < 64; position++) {
+            for (int piece = 0; piece < 12; piece++) {
+                for (int color = 0; color < 2; color++) {
+                    zobristTable[position][piece][color] = random.nextLong();
+                }
+            }
+        }
+        
+        return zobristTable;
+    }
+
+    public long getZobristHash() {
+        long hash = 0L;
+    
+        // Iterate through all the positions on the board
+        for (int position = 0; position < 64; position++) {
+            // Retrieve the piece at the current position
+            Piece piece = getPiece(position);
+            
+            // If there's a piece at the current position
+            if (piece != null) {
+                int pieceType = piece.getPieceType().ordinal(); 
+                int color = piece.getPieceAllegiance().isWhite() ? 0 : 1; 
+                hash ^= ZOBRIST_TABLE[position][pieceType][color];
+            }
+        }
+    
+        return hash;
+    }
+
+    /* End of additons in Board Class for paralell alpha-beta */
 
     private Board(final Builder builder) {
         this.boardConfig = Collections.unmodifiableMap(builder.boardConfig);

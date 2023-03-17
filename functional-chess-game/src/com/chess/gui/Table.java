@@ -6,6 +6,8 @@ import com.chess.engine.classic.pieces.Piece;
 import com.chess.engine.classic.player.Player;
 import com.chess.engine.classic.player.ai.StandardBoardEvaluator;
 import com.chess.engine.classic.player.ai.StockAlphaBeta;
+import com.chess.engine.classic.player.ai.AlphaBetaWithMoveOrdering;
+import com.chess.engine.classic.player.ai.ParallelAlphaBeta;
 import com.chess.pgn.FenUtilities;
 import com.chess.pgn.MySqlGamePersistence;
 //import com.google.common.collect.Lists;
@@ -25,6 +27,8 @@ import static com.chess.pgn.PGNUtilities.persistPGNFile;
 import static com.chess.pgn.PGNUtilities.writeGameToPGNFile;
 import static javax.swing.JFrame.setDefaultLookAndFeelDecorated;
 import static javax.swing.SwingUtilities.*;
+
+
 
 public final class Table extends Observable {
 
@@ -491,7 +495,9 @@ public final class Table extends Observable {
                 bestMove = bookMove;
             }
             else {
-                final StockAlphaBeta strategy = new StockAlphaBeta(Table.get().getGameSetup().getSearchDepth());
+                //final StockAlphaBeta strategy = new StockAlphaBeta(Table.get().getGameSetup().getSearchDepth());
+                final AlphaBetaWithMoveOrdering strategy = new AlphaBetaWithMoveOrdering(Table.get().getGameSetup().getSearchDepth(),6);
+                //final ParallelAlphaBeta strategy = new ParallelAlphaBeta(Table.get().getGameSetup().getSearchDepth(),4);
                 strategy.addObserver(Table.get().getDebugPanel());
                 bestMove = strategy.execute(Table.get().getGameBoard());
             }
