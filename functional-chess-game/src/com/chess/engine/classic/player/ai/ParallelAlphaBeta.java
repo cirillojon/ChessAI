@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.RecursiveTask;
 
 import java.util.Observable;
 
@@ -29,7 +30,7 @@ public class ParallelAlphaBeta extends Observable implements MoveStrategy {
     private final AtomicInteger cutOffsProduced;
     private AtomicInteger numBoardsEvaluated;
     private final TranspositionTable transpositionTable;
-
+    int bestScore;
     public ParallelAlphaBeta(final int searchDepth, int maxThreads) {
         this.searchDepth = searchDepth;
         this.maxThreads = maxThreads;
@@ -39,30 +40,31 @@ public class ParallelAlphaBeta extends Observable implements MoveStrategy {
         this.numBoardsEvaluated = new AtomicInteger(0);
     }
 
-    public Move execute(final Board board) {
-        final long startTime = System.currentTimeMillis();
-        final Player currentPlayer = board.currentPlayer();
-        final Alliance alliance = currentPlayer.getAlliance();
-
-        ForkJoinPool pool = new ForkJoinPool(maxThreads);
-
-        System.out.println(board.currentPlayer() + " THINKING with depth = " + this.searchDepth);
-
-        List<Move> orderedMoves = orderMoves(currentPlayer.getLegalMoves(), board, alliance);
-
-        Move bestMove = null;
-        int bestScore = Integer.MIN_VALUE;
-
-        for (Move move : orderedMoves) {
-            MoveTransition moveTransition = board.currentPlayer().makeMove(move);
-            if (moveTransition.getMoveStatus().isDone()) {
-                int value = alphaBeta(moveTransition.getToBoard(), this.searchDepth - 1, bestScore, Integer.MAX_VALUE, !alliance.isWhite(), pool);
+        public Move execute(final Board board) {
+            final long startTime = System.currentTimeMillis();
+            final Player currentPlayer = board.currentPlayer();
+            final Alliance alliance = currentPlayer.getAlliance();
+    
+            ForkJoinPool pool = new ForkJoinPool(maxThreads);
+    
+            System.out.println(board.currentPlayer() + " THINKING with depth = " + this.searchDepth);
+    
+            List<Move> orderedMoves = orderMoves(currentPlayer.getLegalMoves(), board, alliance);
+    
+            Move bestMove = null;
+            bestScore = Integer.MIN_VALUE;
+    
+            List<AlphaBetaTask> tasks = orderedMoves.stream()
+                    .map(move -> new AlphaBetaTask(move, board, this.searchDepth - 1, bestScore, Integer.MAX_VALUE, !alliance.isWhite(), pool))
+                    .collect(Collectors.toList());
+    
+            for (AlphaBetaTask task : tasks) {
+                int value = pool.invoke(task);
                 if (value > bestScore) {
                     bestScore = value;
-                    bestMove = move;
+                    bestMove = task.getMove();
                 }
             }
-        }
 
         if (bestMove != null) {
             System.out.println("\t" + toString() + "(" + this.searchDepth + "), best: " + bestMove);
@@ -149,6 +151,39 @@ public class ParallelAlphaBeta extends Observable implements MoveStrategy {
                 return value;
             }
             
+            private class AlphaBetaTask extends RecursiveTask<Integer> {
+                private final Move move;
+                private final Board board;
+                private final int depth;
+                private final int alpha;
+                private final int beta;
+                private final boolean maximizingPlayer;
+                private final ForkJoinPool pool;
+        
+                AlphaBetaTask(Move move, Board board, int depth, int alpha, int beta, boolean maximizingPlayer, ForkJoinPool pool) {
+                    this.move = move;
+                    this.board = board;
+                    this.depth = depth;
+                    this.alpha = alpha;
+                    this.beta = beta;
+                    this.maximizingPlayer = maximizingPlayer;
+                    this.pool = pool;
+                }
+        
+                Move getMove() {
+                    return move;
+                }
+        
+                @Override
+                protected Integer compute() {
+                    MoveTransition moveTransition = board.currentPlayer().makeMove(move);
+                    if (moveTransition.getMoveStatus().isDone()) {
+                        return alphaBeta(moveTransition.getToBoard(), depth, alpha, beta, maximizingPlayer, pool);
+                    }
+                    return maximizingPlayer ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+                }
+            }
+
             private static class MoveScore {
                 private final Move move;
                 private final int score;
