@@ -15,6 +15,8 @@ import java.util.Observable;
 
 import static com.chess.engine.classic.board.Move.*;
 
+import java.util.ArrayList;
+
 public class AlphaBetaWithMoveOrdering extends Observable implements MoveStrategy {
 
     private final BoardEvaluator evaluator;
@@ -25,6 +27,9 @@ public class AlphaBetaWithMoveOrdering extends Observable implements MoveStrateg
     private long executionTime;
     private int quiescenceCount;
     private int cutOffsProduced;
+
+    // List to store total time taken to calculate each move.
+    public static ArrayList<Long> moveTimes = new ArrayList<Long>();
 
     private enum MoveSorter {
 
@@ -118,8 +123,10 @@ public class AlphaBetaWithMoveOrdering extends Observable implements MoveStrateg
             moveCounter++;
         }
         this.executionTime = System.currentTimeMillis() - startTime;
+        moveTimes.add(this.executionTime);
         System.out.printf("%s SELECTS %s [#boards evaluated = %d, time taken = %d ms, eval rate = %.1f cutoffCount = %d prune percent = %.2f\n", board.currentPlayer(),
                 bestMove, this.boardsEvaluated, this.executionTime, (1000 * ((double)this.boardsEvaluated/this.executionTime)), this.cutOffsProduced, 100 * ((double)this.cutOffsProduced/this.boardsEvaluated));
+        System.out.println("Move times: " + moveTimes);
         return bestMove;
     }
 
