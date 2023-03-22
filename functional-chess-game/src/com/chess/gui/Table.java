@@ -58,7 +58,7 @@ public final class Table extends Observable {
     private static final Table INSTANCE = new Table();
 
     private Table() {
-        this.gameFrame = new JFrame("BlackWidow");
+        this.gameFrame = new JFrame("ChessAI");
         final JMenuBar tableMenuBar = new JMenuBar();
         populateMenuBar(tableMenuBar);
         this.gameFrame.setJMenuBar(tableMenuBar);
@@ -67,7 +67,7 @@ public final class Table extends Observable {
         this.boardDirection = BoardDirection.NORMAL;
         this.highlightLegalMoves = false;
         this.useBook = false;
-        this.pieceIconPath = "art/holywarriors/";
+        this.pieceIconPath = "art/pieces/";
         this.gameHistoryPanel = new GameHistoryPanel();
         this.debugPanel = new DebugPanel();
         this.takenPiecesPanel = new TakenPiecesPanel();
