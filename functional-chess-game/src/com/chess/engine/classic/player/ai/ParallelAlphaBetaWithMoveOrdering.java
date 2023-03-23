@@ -91,8 +91,9 @@ public class ParallelAlphaBetaWithMoveOrdering extends Observable implements Mov
         return this.boardsEvaluated;
     }
 
-    //Paralleism using ForkJoinTask which utilizes work stealing
     /* 
+    //Paralleism using ForkJoinTask which utilizes work stealing
+     
     @Override
     public Move execute(final Board board) {
         final long startTime = System.currentTimeMillis();
@@ -134,8 +135,10 @@ public class ParallelAlphaBetaWithMoveOrdering extends Observable implements Mov
         }
 
         this.executionTime = System.currentTimeMillis() - startTime;
+        moveTimes.add(this.executionTime);
         System.out.printf("%s SELECTS %s [#boards evaluated = %d, time taken = %d ms, eval rate = %.1f cutoffCount = %d prune percent = %.2f\n", board.currentPlayer(),
                 bestMove.get().toString(), this.boardsEvaluated, this.executionTime, (1000 * ((double) this.boardsEvaluated / this.executionTime)), this.cutOffsProduced, 100 * ((double) this.cutOffsProduced / this.boardsEvaluated));
+        System.out.println("Move times: " + moveTimes);
         return bestMove.get();
     }
 
@@ -188,7 +191,6 @@ public class ParallelAlphaBetaWithMoveOrdering extends Observable implements Mov
             }
         }
     }
-
     */
 
     //Parellism  using ExecutorService  
@@ -325,14 +327,16 @@ public class ParallelAlphaBetaWithMoveOrdering extends Observable implements Mov
                 .map(result -> result.move)
                 .orElse(MoveFactory.getNullMove());
 
-                this.executionTime = System.currentTimeMillis() - startTime;
+                this.executionTime = System.currentTimeMillis() - startTime;moveTimes.add(this.executionTime);
+                moveTimes.add(this.executionTime);
                 System.out.printf("%s SELECTS %s [#boards evaluated = %d, time taken = %d ms, eval rate = %.1f cutoffCount = %d prune percent = %.2f\n", board.currentPlayer(),
                         bestMove, this.boardsEvaluated, this.executionTime, (1000 * ((double) this.boardsEvaluated / this.executionTime)), this.cutOffsProduced, 100 * ((double) this.cutOffsProduced / this.boardsEvaluated));
                 System.out.println("Best move: " + bestMove);
+                System.out.println("MoveTimes: " + moveTimes);
                 return bestMove;
         }
-        */
-     
+     */
+
     public int max(final Board board, final int depth, final int highest, final int lowest) {
 
         if (depth == 0 || BoardUtils.isEndGame(board)) {
