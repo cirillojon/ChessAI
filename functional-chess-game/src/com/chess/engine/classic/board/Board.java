@@ -6,7 +6,7 @@ import com.chess.engine.classic.pieces.*;
 import com.chess.engine.classic.player.BlackPlayer;
 import com.chess.engine.classic.player.Player;
 import com.chess.engine.classic.player.WhitePlayer;
-import com.chess.engine.*;
+//import com.chess.engine.*;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -67,7 +67,7 @@ public final class Board {
     }
 
     /* End of additons in Board Class for paralell alpha-beta */
-
+    
     private Board(final Builder builder) {
         this.boardConfig = Collections.unmodifiableMap(builder.boardConfig);
         this.whitePieces = calculateActivePieces(builder, Alliance.WHITE);

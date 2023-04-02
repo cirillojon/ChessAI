@@ -91,6 +91,7 @@ public class ParallelAlphaBetaWithMoveOrdering extends Observable implements Mov
         return this.boardsEvaluated;
     }
 
+
     /* 
     //Paralleism using ForkJoinTask which utilizes work stealing
      
@@ -191,8 +192,10 @@ public class ParallelAlphaBetaWithMoveOrdering extends Observable implements Mov
             }
         }
     }
-    */
 
+    */
+    
+ 
     //Parellism  using ExecutorService  
     @Override
     public Move execute(final Board board) {
@@ -274,8 +277,8 @@ public class ParallelAlphaBetaWithMoveOrdering extends Observable implements Mov
         return bestMove[0];
     }
     
-    
-    /* 
+     
+/* 
     // Parallelism using Parallel Streams
     @Override
     public Move execute(final Board board) {
@@ -335,7 +338,7 @@ public class ParallelAlphaBetaWithMoveOrdering extends Observable implements Mov
                 System.out.println("MoveTimes: " + moveTimes);
                 return bestMove;
         }
-     */
+*/
 
     public int max(final Board board, final int depth, final int highest, final int lowest) {
 
@@ -355,7 +358,7 @@ public class ParallelAlphaBetaWithMoveOrdering extends Observable implements Mov
      */
         final long boardHash = board.getZobristHash();
 
-        // Changed: Use the transposition table to cache and retrieve previously computed values.
+        // Use the transposition table to cache and retrieve previously computed values.
         if (transpositionTable.containsKey(boardHash)) {
             return transpositionTable.get(boardHash);
         }
@@ -374,6 +377,8 @@ public class ParallelAlphaBetaWithMoveOrdering extends Observable implements Mov
         transpositionTable.put(boardHash, currentHighest);
         return currentHighest;
     }
+
+    
 
     public int min(final Board board, final int depth, final int highest, final int lowest) {
 

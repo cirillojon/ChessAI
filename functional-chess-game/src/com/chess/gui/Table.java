@@ -7,7 +7,6 @@ import com.chess.engine.classic.player.Player;
 import com.chess.engine.classic.player.ai.StandardBoardEvaluator;
 import com.chess.engine.classic.player.ai.StockAlphaBeta;
 import com.chess.engine.classic.player.ai.AlphaBetaWithMoveOrdering;
-import com.chess.engine.classic.player.ai.ParallelAlphaBeta;
 import com.chess.engine.classic.player.ai.ParallelAlphaBetaWithMoveOrdering;
 import com.chess.pgn.FenUtilities;
 import com.chess.pgn.MySqlGamePersistence;
@@ -496,11 +495,16 @@ public final class Table extends Observable {
                 bestMove = bookMove;
             }
             else {
+                //Stock Alhpa Beta without enhancements (Sequential)
                 //final StockAlphaBeta strategy = new StockAlphaBeta(Table.get().getGameSetup().getSearchDepth());
+
+                //Alpha Beta with Move Ordering (Sequential)
                 //final AlphaBetaWithMoveOrdering strategy = new AlphaBetaWithMoveOrdering(Table.get().getGameSetup().getSearchDepth(),6);
-                //final ParallelAlphaBeta strategy = new ParallelAlphaBeta(Table.get().getGameSetup().getSearchDepth(),4);
+
+                //Parallel-Alpha-Beta
                 final ParallelAlphaBetaWithMoveOrdering strategy = new ParallelAlphaBetaWithMoveOrdering(Table.get().getGameSetup().getSearchDepth());
                 strategy.addObserver(Table.get().getDebugPanel());
+
                 bestMove = strategy.execute(Table.get().getGameBoard());
             }
             return bestMove;

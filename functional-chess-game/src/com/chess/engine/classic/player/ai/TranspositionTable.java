@@ -22,3 +22,4 @@ public class TranspositionTable {
         return EMPTY_VALUE;
     }
 }
+
