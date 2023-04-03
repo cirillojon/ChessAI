@@ -24,7 +24,7 @@ These are the changes we made to the original code to implement our parallelized
 
 ## Steps to run our parallel code:
 1. Clone this GitHub Repository
-2. Open the folder in a terminal
+2. Open the 'ChessAI' folder in a terminal
 3. Change Directory into the 'functional-chess-game folder' (The path should look like this: ChessAI\functional-chess-game)
 4. Use the following command to compile the code: javac -d ./bin -cp ./lib/guava-18.0.jar -sourcepath ./src ./src/com/chess/Driver.java
 5. To run the code: java -cp "./bin;./lib/guava-18.0.jar" com.chess.Driver
