@@ -37,7 +37,7 @@ By default the game will run our most efficient, executor-service implementation
 # To use other parallel implementations
 In the ParallelAlphaBetaWithMoveOrdering file located at: com\chess\engine\classic\player\ai, all three parallel implementations are contained in the code. 
 
-2 will be commented out, and the one currently being used is uncommented. To switch implementations, simply uncomment the one you would like to use, and comment out the other.
+Two will be commented out, and the one currently being used is uncommented. To switch implementations, simply uncomment the one you would like to use, and comment out the other.
 
 # To use sequential implementation
 On Line 502 of the 'Table' class located at: com\chess\gui, currently the sequential AlphaBetaWithMoveOrdering class is commented out
