@@ -1,15 +1,15 @@
 # Welcome to our Multi-threaded Chess AI!
 
-# To run our code, see the "Steps to run our parallel code" section
+## To run our code, see the "Steps to run our parallel code" section
 
-[Link to Target Section](#Steps to run our parallel code:)
+[Link to Target Section](#steps-to-run-our-parallel-code)
 
-# Abstract:
+## Abstract:
 For complex problems whose solutions tend to be time-consuming, one of the ways to improve runtime is through parallelization. Even for artificial intelligence (AI) algorithms that play complex games like chess, we can break down the processing time by parallelizing its main algorithm. This paper will be used to explore this potential in performance. We will use an algorithm that is commonly used in chess AIs called Alpha-Beta-Pruning. Alpha-Beta-Pruning is an optimization of the Minimax algorithm, which is used to find the best move in a 2-player game. By itself, the Alpha Beta algorithm increases the processing speed of the searching algorithm, but we plan to improve its performance using parallelization. Using Java, we successfully implemented three parallelizations of the Alpha Beta pruning algorithm, each using different parallelization methods. We then compare the performance of these parallelized versions to the sequential version, to determine if there was any improvement, and evaluate which technique was most effective.
 
 Our finished paper can be found in this repo @ Final-Paper.tex 
  
-# Disclaimer! We did not build this chess game! 
+## Disclaimer! We did not build this chess game! 
 The original repo can be found here: https://github.com/amir650/BlackWidow-Chess
 
 We needed a way to test our multi-threaded AI within the context of a chess game, and this open-source code served as our medium for testing.
@@ -33,19 +33,19 @@ These are the changes we made to the original code to implement our parallelized
 7. Here you can choose to either have the computer play itself by selecting computer for both players, or play against it yourself.
 8. Information regarding calcuated move times, ordered move list, prune cutoff percentage, and more will output to console
 
-# IMPORTANT NOTE!
+## IMPORTANT NOTE!
 By default the game will run our most efficient, executor-service implementation.
 
-# To use other parallel implementations:
+## To use other parallel implementations:
 In the ParallelAlphaBetaWithMoveOrdering file located at: com\chess\engine\classic\player\ai, all three parallel implementations are contained in the code. 
 
 Two will be commented out, and the one currently being used is uncommented. To switch implementations, simply uncomment the one you would like to use, and comment out the other.
 
-# To use sequential implementation:
+## To use sequential implementation:
 On Line 502 of the 'Table' class located at: com\chess\gui, currently the sequential AlphaBetaWithMoveOrdering class is commented out
 To use the sequential implementation instead of the parallel, simply uncomment this line, and comment line 505, where the parallel code is called.
 To switch back, simply reverse these steps
 
-# The Results of our experiment:
+## The Results of our experiment:
 
 ![Results](Results-Graph.jpeg)
