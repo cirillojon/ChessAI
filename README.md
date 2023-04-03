@@ -41,9 +41,9 @@ In the ParallelAlphaBetaWithMoveOrdering file located at: com\chess\engine\class
 Two will be commented out, and the one currently being used is uncommented. To switch implementations, simply uncomment the one you would like to use, and comment out the other.
 
 ## To use sequential implementation:
-On Line 502 of the 'Table' class located at: com\chess\gui, currently the sequential AlphaBetaWithMoveOrdering class is commented out
+On Line 502 of the 'Table' class located at: com\chess\gui, currently the sequential AlphaBetaWithMoveOrdering class is commented out. 
 To use the sequential implementation instead of the parallel, simply uncomment this line, and comment line 505, where the parallel code is called.
-To switch back, simply reverse these steps
+To switch back, simply reverse these steps.
 
 ## The old-code folder:
 This folder contains the parallel alpha-beta code we made before applying it to a chess game. This version of the code was much slower than the sequential, and underwent many changes. 
