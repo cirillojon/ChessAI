@@ -9,9 +9,11 @@ Our finished paper can be found in this repo @ Final-Paper.tex
  
 # Disclaimer! We did not build this chess game! 
 The original repo can be found here: https://github.com/amir650/BlackWidow-Chess
+
 We needed a way to test our multi-threaded AI within the context of a chess game, and this open-source code served as our medium for testing.
 
 The creator of this chess game also made an excellent tutorial to follow along: https://www.youtube.com/playlist?list=PLOJzCFLZdG4zk5d-1_ah2B4kqZSeIlWtt
+
 The work-in-progress folder represents the progress we made following this tutorial before switching to the finished code due to time constraints
 
 These are the changes we made to the original code to implement our parallelized code:
@@ -33,7 +35,9 @@ These are the changes we made to the original code to implement our parallelized
 By default the game will run our most efficient, executor-service implementation.
 
 # To use other parallel implementations
-In the ParallelAlphaBetaWithMoveOrdering file located at: com\chess\engine\classic\player\ai, all three parallel implementations are contained in the code. 2 will be commented out, and the one currently being used is uncommented. To switch implementations, simply uncomment the one you would like to use, and comment out the other.
+In the ParallelAlphaBetaWithMoveOrdering file located at: com\chess\engine\classic\player\ai, all three parallel implementations are contained in the code. 
+
+2 will be commented out, and the one currently being used is uncommented. To switch implementations, simply uncomment the one you would like to use, and comment out the other.
 
 # To use sequential implementation
 On Line 502 of the 'Table' class located at: com\chess\gui, currently the sequential AlphaBetaWithMoveOrdering class is commented out
