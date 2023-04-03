@@ -45,6 +45,9 @@ On Line 502 of the 'Table' class located at: com\chess\gui, currently the sequen
 To use the sequential implementation instead of the parallel, simply uncomment this line, and comment line 505, where the parallel code is called.
 To switch back, simply reverse these steps
 
+## The old-code folder:
+This folder contains the parallel alpha-beta code we made before applying it to a chess game. This version of the code was much slower than the sequential, and underwent many changes. 
+
 ## The Results of our experiment:
 
 ![Results](Results-Graph.jpeg)
