@@ -6,7 +6,7 @@
 ## Abstract:
 For complex problems whose solutions tend to be time-consuming, one of the ways to improve runtime is through parallelization. Even for artificial intelligence (AI) algorithms that play complex games like chess, we can break down the processing time by parallelizing its main algorithm. This paper will be used to explore this potential in performance. We will use an algorithm that is commonly used in chess AIs called Alpha-Beta-Pruning. Alpha-Beta-Pruning is an optimization of the Minimax algorithm, which is used to find the best move in a 2-player game. By itself, the Alpha Beta algorithm increases the processing speed of the searching algorithm, but we plan to improve its performance using parallelization. Using Java, we successfully implemented three parallelizations of the Alpha Beta pruning algorithm, each using different parallelization methods. We then compare the performance of these parallelized versions to the sequential version, to determine if there was any improvement, and evaluate which technique was most effective.
 
-Our finished paper can be found in this repo @ Final-Paper.tex 
+Our finished paper can be found in this repo @ Final-Paper.pdf
  
 ## Disclaimer! We did not build this chess game! 
 The original repo can be found here: https://github.com/amir650/BlackWidow-Chess
